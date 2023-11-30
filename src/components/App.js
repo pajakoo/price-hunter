@@ -74,42 +74,40 @@ function App() {
 
   useEffect(() => {
     /* global google */
-    google.accounts.id.initialize({
-      client_id: '698649535640-7j0jm7jlscolg3gfdr7dkn0qs248jeep.apps.googleusercontent.com',
-      callback: fetchUserInfoFromServer
-    });
+    // google.accounts.id.initialize({
+    //   client_id: '698649535640-7j0jm7jlscolg3gfdr7dkn0qs248jeep.apps.googleusercontent.com',
+    //   callback: fetchUserInfoFromServer
+    // });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    );
+    // google.accounts.id.renderButton(
+    //   document.getElementById("signInDiv"),
+    //   { theme: "outline", size: "large" }
+    // );
 
   }, []);
 
 
   const handleSignOut = () => {
-    setCurrentUser(null);
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv2"),
-      { theme: "outline", size: "large" }
-    );
+  //   setCurrentUser(null);
+  //   google.accounts.id.renderButton(
+  //     document.getElementById("signInDiv2"),
+  //     { theme: "outline", size: "large" }
+  //   );
 
   };
 
   const checkUserRights = (roles) => {
     // Check if the user has the 'admin' ro
-    console.log('right', currentUser.roles);
-    return currentUser && currentUser.roles.includes(roles);
-    //  return true;
+    // console.log('right', currentUser.roles);
+    // return currentUser && currentUser.roles.includes(roles);
+      return true;
   };
 
 
   return (
     <>
-  {/* <button id="installButton">Install App</button> */ }
-
-      {currentUser ? (
-        <>
+  
+    
           <Router>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <div className="container">
@@ -150,10 +148,7 @@ function App() {
               <Route path="/users" element={<UserManagement />} />
             </Routes>
           </Router>
-        </>
-      ) : (
-        <div id="signInDiv"></div>
-      )}
+      ) 
     </>
   );
 }
