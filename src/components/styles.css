@@ -37,41 +37,33 @@
   }
 }
 
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.gm-style-iw button[title="Close"] {
+  display: none !important;
+}
 
-/* UserManagement.css */
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-.user-table {
+video {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  height: auto;
 }
 
-.user-table th, .user-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.form-control {
+  margin-bottom: 10px;
 }
 
-.user-table th {
-  background-color: #f2f2f2;
-}
-
-.role-select {
+.btn-primary,
+.btn-danger {
   width: 100%;
-  padding: 6px;
-}
-
-.edit-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.edit-button:disabled {
-  background-color: #a0a0a0;
-  cursor: not-allowed;
+  margin-top: 10px;
 }
