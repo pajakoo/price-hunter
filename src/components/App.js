@@ -8,40 +8,40 @@ import Admin from './Admin';
 import UserManagement from './UserManagement';
 
 
-// let deferredPrompt;
+let deferredPrompt;
 
-// window.addEventListener('beforeinstallprompt', (event) => {
-//   // Prevent the default prompt
-//   event.preventDefault();
-//   // Store the event for later use
-//   deferredPrompt = event;
-//   // Optionally show your own install button
-//   showInstallButton();
-// });
+window.addEventListener('beforeinstallprompt', (event) => {
+  // Prevent the default prompt
+  event.preventDefault();
+  // Store the event for later use
+  deferredPrompt = event;
+  // Optionally show your own install button
+  showInstallButton();
+});
 
-// function showInstallButton() {
-//   const installButton = document.getElementById('installButton');
-//   installButton.style.display = 'block';
-//   installButton.addEventListener('click', () => {
-//     // Trigger the installation prompt
-//     deferredPrompt.prompt();
-//     // Wait for the user to respond to the prompt
-//     deferredPrompt.userChoice.then((choiceResult) => {
-//       if (choiceResult.outcome === 'accepted') {
-//         console.log('User accepted the install prompt');
-//       } else {
-//         console.log('User dismissed the install prompt');
-//       }
-//       // Clear the deferredPrompt variable
-//       deferredPrompt = null;
-//     });
-//   });
-// }
+function showInstallButton() {
+  const installButton = document.getElementById('installButton');
+  installButton.style.display = 'block';
+  installButton.addEventListener('click', () => {
+    // Trigger the installation prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      // Clear the deferredPrompt variable
+      deferredPrompt = null;
+    });
+  });
+}
 
-// if (window.matchMedia('(display-mode: standalone)').matches) {
-//   // The app is already installed
-//   document.getElementById('installButton').style.display = 'none';
-// }
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  // The app is already installed
+  document.getElementById('installButton').style.display = 'none';
+}
 
 
 
@@ -88,11 +88,11 @@ function App() {
 
 
   const handleSignOut = () => {
-  //   setCurrentUser(null);
-  //   google.accounts.id.renderButton(
-  //     document.getElementById("signInDiv2"),
-  //     { theme: "outline", size: "large" }
-  //   );
+    setCurrentUser(null);
+    // google.accounts.id.renderButton(
+    //   document.getElementById("signInDiv2"),
+    //   { theme: "outline", size: "large" }
+    // );
 
   };
 
@@ -100,14 +100,15 @@ function App() {
     // Check if the user has the 'admin' ro
     // console.log('right', currentUser.roles);
     // return currentUser && currentUser.roles.includes(roles);
-      return true;
+     return true;
   };
 
 
   return (
-    <>
-  
-    
+
+        <>
+   <button id="installButton">Install App</button> 
+
           <Router>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <div className="container">
@@ -148,8 +149,8 @@ function App() {
               <Route path="/users" element={<UserManagement />} />
             </Routes>
           </Router>
-      ) 
-    </>
+        </>
+      
   );
 }
 
