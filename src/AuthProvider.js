@@ -16,15 +16,15 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     setIsAuthenticated(false);
     axios.get(`${url}/auth/logout`, {
-            withCredentials: true
-        }).then((res) => {
-            if (res.data === "done") {
-               // window.location.href = "/"
-            }
-        })
+      withCredentials: true
+    }).then((res) => {
+      if (res.data === "done") {
+        // window.location.href = "/"
+      }
+    })
   };
 
-  
+
 
   useEffect(() => {
     const getUser = async () => {
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (err) {
         console.log('refresh-pajak');
-        window.location.reload();
+        //window.location.reload();
       }
     };
     getUser();
