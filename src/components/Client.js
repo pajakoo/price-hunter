@@ -289,6 +289,9 @@ function Client() {
     );
   };
 
+
+
+
   return (
     <div className="container">
       <h1 className="mt-4">Списък за пазаруване</h1>

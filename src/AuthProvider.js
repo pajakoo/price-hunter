@@ -1,23 +1,50 @@
-import React, { createContext, useContext, useState } from 'react';
+// AuthContext.js
+import { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(/* initial authentication status */);
-  const [userRoles, setUserRoles] = useState(/* initial user roles */);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app');// useState('http://localhost:3333');//
 
   const login = () => {
-    // Implement your login logic here
-    // Set isAuthenticated and userRoles based on the login result
+    window.open(`${url}/auth/google`, "_self")
   };
 
-  const logout = () => {
-    // Implement your logout logic here
-    // Set isAuthenticated and userRoles accordingly
+  const logout = async () => {
+    setIsAuthenticated(false);
+    axios.get(`${url}/auth/logout`, {
+            withCredentials: true
+        }).then((res) => {
+            if (res.data === "done") {
+               // window.location.href = "/"
+            }
+        })
   };
+
+  
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get(`${url}/auth/login/success`, {
+          withCredentials: true,
+        });
+        if (response.data.message === "successfull") {
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        console.log('refresh-pajak');
+        window.location.reload();
+      }
+    };
+    getUser();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userRoles, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
