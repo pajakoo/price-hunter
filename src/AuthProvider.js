@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
+  
   useEffect(() => {
 		getUser();
 	}, []);
