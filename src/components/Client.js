@@ -38,7 +38,6 @@ function Client() {
   const [cheapestStores, setCheapestStores] = useState([]);
   const [suggestedProducts, setSuggestedProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
-  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app'); //useState('http://localhost:3333');//
   const [productPriceHistories, setProductPriceHistories] = useState({});
   const [chartInstance, setChartInstance] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -60,7 +59,7 @@ function Client() {
   });
 
   useEffect(() => {
-    fetch(`${url}/api/products-client`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/products-client`)
       .then((response) => response.json())
       .then((data) => {
         setSuggestedProducts(data);
@@ -69,7 +68,7 @@ function Client() {
         console.error('Error:', error);
       });
 
-      fetch(`${url}/api/stores`)
+      fetch(`${process.env.REACT_APP_API_URL}/api/stores`)
       .then((response) => response.json())
       .then((data) => {
         setStores(data);
@@ -78,7 +77,7 @@ function Client() {
         console.error('Error:', error);
       });
 
-  }, [url]);
+  }, []);
  
 
   useEffect(() => {
@@ -116,7 +115,7 @@ function Client() {
   }, [productPriceHistories]);
 
   const fetchPriceHistoryForStore = (barcode, productId, storeId) => {
-    fetch(`${url}/api/product/${barcode}/prices/${storeId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/product/${barcode}/prices/${storeId}`)
     .then((response) => response.json())
     .then((data) => {
       setProductPriceHistories((prevHistories) => ({
@@ -127,7 +126,7 @@ function Client() {
   }
 
   const fetchPriceHistory = (barcode, productId) => {
-    fetch(`${url}/api/product/${barcode}/history`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/product/${barcode}/history`)
       .then((response) => response.json())
       .then((data) => {
         setProductPriceHistories((prevHistories) => ({
@@ -169,7 +168,7 @@ function Client() {
     const selectedProduct = shoppingList[0];
     const { barcode } = selectedProduct;
 
-    fetch(`${url}/api/cheapest`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/cheapest`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

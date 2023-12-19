@@ -6,26 +6,24 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app');//  useState('http://localhost:3333');//
 
   const login = () => {
-    window.open(`${url}/auth/google`, "_self")
+    window.open(`${process.env.REACT_APP_API_URL}/auth/google`, "_self")
   };
 
 	const logout = () => {
-		window.open(`${url}/auth/logout`, "_self");
+		window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
 	};
 
   const getUser = async () => {
 		try {
-			const { data } = await axios.get(`${url}/auth/login/success`, { withCredentials: true });
+			const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/auth/login/success`, { withCredentials: true });
 			setUser(data.user._json);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
-  
   useEffect(() => {
 		getUser();
 	}, []);

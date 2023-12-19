@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import axios from 'axios';
 //cmd+K+cmd+0 folding functions ( unfold  cmd+K +cmd+J )
 // Components
 import Client from './Client';
@@ -44,10 +42,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 }
 
 
-
 function App() {
-
-  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app'); //useState('http://localhost:3333');//
   const { user, login, logout } = useAuth();
  
   const checkUserRights = (roles) => {
@@ -128,17 +123,4 @@ function App() {
   );
 }
 
-export default App;
-
-
-
-
-
-
-
-
-
-// const PrivateRoutes = ({ component: Component, isAuthenticated, ...rest }) => {
-//   console.log('pajak:',isAuthenticated);
-//   return isAuthenticated ? <><Component {...rest} /> </>: <><Navigate to="/login" /></>;
-// };
+export default App; 

@@ -6,14 +6,12 @@ const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState({});
-  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app');// useState('http://localhost:3333');// 
-
 
   useEffect(() => console.log(selectedRoles), [selectedRoles]);
 
   useEffect(() => {
     // Fetch users and their roles from your server when the component mounts
-    axios.get(`${url}/api/users`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users`)
       .then((response) => {
         setUsers(response.data);
 
@@ -27,15 +25,15 @@ const UserManagement = () => {
       .catch((error) => console.error('Error fetching users:', error));
 
     // Fetch user roles
-    axios.get(`${url}/api/userRoles`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/userRoles`)
       .then((response) => setRoles(response.data))
       .catch((error) => console.error('Error fetching user roles:', error));
-  }, [url]);
+  }, []);
 
   const handleEditRoles = async (userId) => {
     try {
       const updatedRoles = selectedRoles[userId] || [];
-      await axios.put(`${url}/api/users/${userId}/roles`, { roles: updatedRoles });
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/users/${userId}/roles`, { roles: updatedRoles });
 
       // Fetch users again to update the UI
       // fetchUsers();
