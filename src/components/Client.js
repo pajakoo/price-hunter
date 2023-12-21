@@ -20,6 +20,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Chart } from 'react-chartjs-2'
+import axios from 'axios';
 
 ChartJS.register(
   CategoryScale,
@@ -58,6 +59,22 @@ function Client() {
     datasets: [],
   });
 
+
+  const getStores = async () => {
+		try {
+			const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/stores`, { withCredentials: true });
+      setStores(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+
+  useEffect(() => {
+		getStores();
+	}, []);
+
+  
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/api/products-client`)
       .then((response) => response.json())
@@ -68,14 +85,15 @@ function Client() {
         console.error('Error:', error);
       });
 
-      fetch(`${process.env.REACT_APP_API_URL}/api/stores`)
-      .then((response) => response.json())
-      .then((data) => {
-        setStores(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      
+      // fetch(`${process.env.REACT_APP_API_URL}/api/stores`)
+      // .then((response) => response.json())
+      // .then((data) => {
+      //   setStores(data);
+      // })
+      // .catch((error) => {
+      //   console.error('Error:', error);
+      // });
 
   }, []);
  

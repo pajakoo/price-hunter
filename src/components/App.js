@@ -115,7 +115,7 @@ function App() {
             <Route element={<Admin />} path="/admin" />
             <Route element={<UserManagement />} path="/users" />
           </Route>
-          { user ? '' : <Route element={<Login />} path="/login" /> }
+          { user ? <Route element={<Client />} path="/" /> : <Route element={<Login />} path="/login" /> }
         </Routes>
       </Router>
 
