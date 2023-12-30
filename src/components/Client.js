@@ -178,29 +178,43 @@ function Client() {
     });
   };
 
-  const handleFindCheapest = () => {
+  const handleFindCheapest = async() => {
     if (shoppingList.length === 0) {
       return;
     }
 
     const selectedProduct = shoppingList[0];
     const { barcode } = selectedProduct;
+ 
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/cheapest`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(shoppingList),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        //console.log(data);
-        setCheapestStores(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/cheapest`, JSON.stringify(shoppingList), {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
+      setCheapestStores(response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+
+
+    // fetch(`${process.env.REACT_APP_API_URL}/api/cheapest`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(shoppingList),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     //console.log(data);
+    //     setCheapestStores(data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
   };
 
   const handleStoreClick = (store) => {
