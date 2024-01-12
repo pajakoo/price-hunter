@@ -324,7 +324,7 @@ function Client() {
 
 
   return (
-    <div className="container">
+    <section className="shadow-blue white-bg padding">
       <h1 className="mt-4">Списък за пазаруване</h1>
       <div className="mb-3">
         {suggestedProducts.length > 0 && (
@@ -422,7 +422,7 @@ function Client() {
       )}
 
       {isLoaded && renderMap()}
-    </div>
+    </section>
   );
 }
 

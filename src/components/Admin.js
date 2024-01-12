@@ -144,7 +144,7 @@ function Admin() {
       const response = await fetch(`${url}/api/products/${barcode}`);
       if (response.ok) {
         const product = await response.json();
-        // setName(product.name);?????????????????????
+        setName(product.name);//?????????????????????
       } else {
         console.error('Грешка при извличане на продукта');
       }
@@ -223,20 +223,20 @@ function Admin() {
   };
 
   return (
-    <div className="container">
+    <section className="shadow-blue white-bg padding">
       <h1>Добави продукт по баркод</h1>
       <div className="d-flex justify-content-center mb-3">
         <video ref={videoRef} width={300} height={200} autoPlay={true} />
       </div>
       <div ref={scannerContainerRef} />
 
-      <select className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
+      <div className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
         {videoDevices.map((device) => (
           <option key={device.deviceId} value={device.deviceId}>
             {device.label}
           </option>
         ))}
-      </select>
+      </div>
       <div className="mb-3">
         <input
           type="text"
@@ -325,7 +325,7 @@ function Admin() {
           </GoogleMapReact>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 
