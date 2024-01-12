@@ -22,7 +22,7 @@ function Admin() {
   const [price, setPrice] = useState('');
   const [products, setProducts] = useState([]);
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [url, setUrl] = useState('https://super-polo-shirt-tick.cyclic.app');//useState('http://localhost:3333');//
+  const [url, setUrl] = useState(`${process.env.REACT_APP_API_URL}`);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [videoDevices, setVideoDevices] = useState([]);
   const Marker = () => <div className="marker"><span role="img">📍</span></div>;
