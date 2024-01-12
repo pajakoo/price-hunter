@@ -174,7 +174,7 @@ function App() {
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Logout />
+              <Logout />PAJAKOO
             </li>
           </ul>
         </div>
