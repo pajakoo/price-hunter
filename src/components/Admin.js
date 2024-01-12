@@ -44,7 +44,7 @@ function Admin() {
         console.error('Error:', error);
       });
 
- navigator.mediaDevices.enumerateDevices().then((devices) => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
       const videoDevices = devices.filter((device) => device.kind === 'videoinput');
       setVideoDevices(videoDevices);
     });
@@ -60,7 +60,7 @@ function Admin() {
     );
   }, []);
 
- useEffect(() => {
+  useEffect(() => {
     if (selectedCamera) {
       codeReader.current = new BrowserMultiFormatReader();
 
@@ -97,7 +97,46 @@ function Admin() {
   }, [selectedCamera]);
 
   useEffect(() => {
-     
+    Quagga.init(
+      {
+        inputStream: {
+          name: 'Live',
+          type: 'LiveStream',
+          target: scannerContainerRef.current,
+          constraints: {
+            width: 320,
+            height: 200,
+            facingMode: 'environment', // use the rear camera
+          },
+        },
+        decoder: {
+          readers: ['ean_reader'], // specify the barcode format to scan (EAN in this case)
+        },
+      },
+      (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          Quagga.start();
+        }
+      }
+    );
+
+    Quagga.onDetected(async (result) => {
+      const scannedBarcode = result.codeResult.code;
+      setBarcode(scannedBarcode);
+      try {
+        const response = await fetch(`${url}/api/searchProduct?code=${scannedBarcode}`);
+        const responseData = await response.json();
+        setName(responseData.name);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    return () => {
+      Quagga.stop();
+    };
   }, []);
 
   const handleNameFieldClick = async () => {
@@ -105,7 +144,7 @@ function Admin() {
       const response = await fetch(`${url}/api/products/${barcode}`);
       if (response.ok) {
         const product = await response.json();
-        setName(product.name);//?????????????????????
+        // setName(product.name);?????????????????????
       } else {
         console.error('Грешка при извличане на продукта');
       }
@@ -186,10 +225,10 @@ function Admin() {
   return (
     <div className="container">
       <h1>Добави продукт по баркод</h1>
-      <div id="#scanner-container" className="d-flex justify-content-center mb-3">
+      <div className="d-flex justify-content-center mb-3">
         <video ref={videoRef} width={300} height={200} autoPlay={true} />
       </div>
-      {/* <div ref={scannerContainerRef} /> */}
+      <div ref={scannerContainerRef} />
 
       <select className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
         {videoDevices.map((device) => (
@@ -198,7 +237,6 @@ function Admin() {
           </option>
         ))}
       </select>
-       
       <div className="mb-3">
         <input
           type="text"

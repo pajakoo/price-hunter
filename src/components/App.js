@@ -180,11 +180,10 @@ function App() {
         </div>
       </div>
     </StyledMenu>
-
         <Routes>
           <Route element={<Client />} path="/" />
+          <Route element={<Admin />} path="/admin" />
           <Route element={<PrivateRoutes />}>
-            <Route element={<Admin />} path="/admin" />
             <Route element={<UserManagement />} path="/users" />
           </Route>
           {user ? <Route element={<Client />} path="/" /> : <Route element={<Login />} path="/login" />}
