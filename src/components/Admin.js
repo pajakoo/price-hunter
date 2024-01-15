@@ -230,13 +230,13 @@ function Admin() {
       </div>
       <div ref={scannerContainerRef} />
 
-      <div className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
+      <select className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
         {videoDevices.map((device) => (
           <option key={device.deviceId} value={device.deviceId}>
             {device.label}
           </option>
         ))}
-      </div>
+      </select>
       <div className="mb-3">
         <input
           type="text"
