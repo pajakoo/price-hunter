@@ -94,12 +94,10 @@ function App() {
         <header className={toggleHeader ? "left float-left shadow-dark open" : "left float-left shadow-dark  " }>
           <button onClick={handleToggle} type="button" className="close" aria-label="Close"><span aria-hidden="true">×</span></button>
           <div className="header-inner d-flex align-items-start flex-column">
-            <a href="/multipage"><img src="/images/logo.png" alt="Bako Doe" /></a>
-            <a className="site-title dot mt-3" href="/multipage">Bako Doe</a>
+            <a href="/multipage"><img src="https://lh3.googleusercontent.com/a/ACg8ocJdWSeRoFfoxIxkAukFt6fCk69_zkcfP9U1LGwHJ30eEFkv=s96-c" alt="Bako Doe" /></a>
+            <a className="site-title dot mt-3" href="/multipage">{user ? user.name : ''}</a>
             <span className="site-slogan">Web Developer</span>
             <nav>
-              <ul className="vertical-menu scrollspy">
-
               <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
@@ -124,15 +122,6 @@ function App() {
                 <Logout />PAJAKOO
               </li>
             </ul>
-
-                <li><a href="/multipage"><i className="icon-home"></i>Home</a></li>
-                <li><a href="/about"><i className="icon-user"></i>About</a></li>
-                <li><a href="/services"><i className="icon-bulb"></i>Services</a></li>
-                <li><a href="/resume"><i className="icon-graduation"></i>Resume</a></li>
-                <li><a href="/works"><i className="icon-grid"></i>Works</a></li>
-                <li><a href="/bloglist"><i className="icon-pencil"></i>Blog</a></li>
-                <li><a href="/contact"><i className="icon-phone"></i>Contact</a></li>
-              </ul>
             </nav>
             <div className="footer mt-auto">
               <ul className="social-icons list-inline">
@@ -164,7 +153,7 @@ function App() {
 
         <div className={toggleHeader ? "mobile-header py-2 px-3 mt-4 push" : "mobile-header py-2 px-3 mt-4 " }>
           <button onClick={handleToggle}  className="menu-icon mr-2"><span></span><span></span><span></span></button>
-          <a className="logo" href="/multipage"><img src="/images/logo.png" alt="Bako Doe"/></a>
+          <a className="logo" href="/multipage"><img src="https://lh3.googleusercontent.com/a/ACg8ocJdWSeRoFfoxIxkAukFt6fCk69_zkcfP9U1LGwHJ30eEFkv=s96-c" alt="Bako Doe"/></a>
           <a className="site-title dot ml-2" href="/">Bako Doe</a>
         </div>
         

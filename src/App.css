@@ -397,7 +397,9 @@ header .copyright {
   border-radius: 20px;
   display: none;
   transform: translateX(0);
-  transition: all .3s ease-in-out
+  transition: all .3s ease-in-out;
+  position: fixed;
+  top:0px;
 }
 
 .mobile-header.push {
@@ -517,19 +519,19 @@ section.white-bg {
 }
 
 section.padding {
-  padding: 80px 50px
+  padding: 10px 24px;
 }
 
 section.padding-50 {
-  padding: 50px
+  padding: 50px;
 }
 
 section.padding-60 {
-  padding: 60px 50px
+  padding: 60px 50px;
 }
 
 .section-title {
-  margin: 0
+  margin: 0;
 }
 
 .section-title:after {
@@ -1638,7 +1640,7 @@ section.padding-60 {
   }
 
   main.content {
-      margin-top: 20px;
+      margin-top: 100px;
       float: none!important;
       width: 100%
   }
@@ -1760,4 +1762,34 @@ section.padding-60 {
 
 .mb-50 {
   margin-bottom: 50px
+}
+
+
+
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5
+}
+
+.close:not(:disabled):not(.disabled) {
+  cursor: pointer
+}
+
+.close:not(:disabled):not(.disabled):focus,.close:not(:disabled):not(.disabled):hover {
+  color: #000;
+  text-decoration: none;
+  opacity: .75
+}
+
+button.close {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none
 }
