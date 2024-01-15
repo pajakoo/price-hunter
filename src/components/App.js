@@ -117,9 +117,9 @@ function App() {
                 </li>
               )}
             </ul>
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Logout />PAJAKOO
+                <Logout /> 
               </li>
             </ul>
             </nav>
@@ -152,9 +152,9 @@ function App() {
         </header>
 
         <div className={toggleHeader ? "mobile-header py-2 px-3 mt-4 push" : "mobile-header py-2 px-3 mt-4 " }>
-          <button onClick={handleToggle}  className="menu-icon mr-2"><span></span><span></span><span></span></button>
+          <button onClick={handleToggle}  className="menu-icon me-2"><span></span><span></span><span></span></button>
           <a className="logo" href="/multipage"><img src="https://lh3.googleusercontent.com/a/ACg8ocJdWSeRoFfoxIxkAukFt6fCk69_zkcfP9U1LGwHJ30eEFkv=s96-c" alt="Bako Doe"/></a>
-          <a className="site-title dot ml-2" href="/">Bako Doe</a>
+          <a className="site-title dot ms-2" href="/">{user ? user.name : ''}</a>
         </div>
         
         <main className={toggleHeader ? "content float-right push" :  "content float-right"}>

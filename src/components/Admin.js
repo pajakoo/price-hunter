@@ -225,9 +225,10 @@ function Admin() {
   return (
     <section className="shadow-blue white-bg padding">
       <h1>Добави продукт по баркод</h1>
-      <div className="d-flex justify-content-center mb-3">
+      {/* <div className="d-flex justify-content-center mb-3">
         <video ref={videoRef} width={300} height={200} autoPlay={true} />
-      </div>
+      </div> */}
+      
       <div ref={scannerContainerRef} />
 
       <select className="form-select mb-3" value={selectedCamera} onChange={handleCameraChange}>
