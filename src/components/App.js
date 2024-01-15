@@ -91,7 +91,7 @@ function App() {
     <div className="site-wrapper">
       <Router>
         {/* <button id="installButton">Install App</button> */}
-        <header className={toggleHeader ? "left float-left shadow-dark open" : "left float-left shadow-dark  " }>
+        <header className={toggleHeader ? "left float-start shadow-dark open" : "left float-start shadow-dark  " }>
           <button onClick={handleToggle} type="button" className="close" aria-label="Close"><span aria-hidden="true">×</span></button>
           <div className="header-inner d-flex align-items-start flex-column">
             <a href="/multipage"><img src="https://lh3.googleusercontent.com/a/ACg8ocJdWSeRoFfoxIxkAukFt6fCk69_zkcfP9U1LGwHJ30eEFkv=s96-c" alt="Bako Doe" /></a>
@@ -157,7 +157,7 @@ function App() {
           <a className="site-title dot ms-2" href="/">{user ? user.name : ''}</a>
         </div>
         
-        <main className={toggleHeader ? "content float-right push" :  "content float-right"}>
+        <main className={toggleHeader ? "content float-end push" :  "content float-end"}>
         <Routes>
           <Route element={<Client />} path="/" />
           <Route element={<Admin />} path="/admin" />
